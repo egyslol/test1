@@ -1,110 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>360 Viewer</title>
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
   </style>
 </head>
 <body>
-  <!-- Three.js from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
-  <script>
-    let scene, camera, renderer, sphere, isDragging = false;
-    let previousMousePosition = { x: 0, y: 0 };
-    let lon = 0, lat = 0;
-
-    init();
-
-    function init() {
-      // Scene
-      scene = new THREE.Scene();
-
-      // Camera
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
-      camera.target = new THREE.Vector3(0, 0, 0);
-
-      // Renderer
-      renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Sphere Geometry with test1.jpg
-      const geometry = new THREE.SphereGeometry(500, 60, 40);
-      geometry.scale(-1, 1, 1); // Invert the sphere to look from inside
-
-      const texture = new THREE.TextureLoader().load('test1.jpg');
-      const material = new THREE.MeshBasicMaterial({ map: texture });
-
-      sphere = new THREE.Mesh(geometry, material);
-      scene.add(sphere);
-
-      animate();
-
-      // Event Listeners
-      document.addEventListener('mousedown', onMouseDown, false);
-      document.addEventListener('mousemove', onMouseMove, false);
-      document.addEventListener('mouseup', onMouseUp, false);
-      window.addEventListener('resize', onWindowResize, false);
-    }
-
-    function onMouseDown(event) {
-      isDragging = true;
-      previousMousePosition = {
-        x: event.clientX,
-        y: event.clientY
-      };
-    }
-
-    function onMouseMove(event) {
-      if (!isDragging) return;
-
-      const deltaMove = {
-        x: event.clientX - previousMousePosition.x,
-        y: event.clientY - previousMousePosition.y
-      };
-
-      lon -= deltaMove.x * 0.1;
-      lat += deltaMove.y * 0.1;
-
-      previousMousePosition = {
-        x: event.clientX,
-        y: event.clientY
-      };
-    }
-
-    function onMouseUp() {
-      isDragging = false;
-    }
-
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      lat = Math.max(-85, Math.min(85, lat));
-      const phi = THREE.MathUtils.degToRad(90 - lat);
-      const theta = THREE.MathUtils.degToRad(lon);
-
-      camera.target.x = 500 * Math.sin(phi) * Math.cos(theta);
-      camera.target.y = 500 * Math.cos(phi);
-      camera.target.z = 500 * Math.sin(phi) * Math.sin(theta);
-      camera.lookAt(camera.target);
-
-      renderer.render(scene, camera);
-    }
-  </script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
