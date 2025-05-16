@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>360 Virtual Tour</title>
+
+  <!-- Photo Sphere Viewer CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.css" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #viewer {
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewer"></div>
+
+  <!-- Photo Sphere Viewer JS Dependencies -->
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.min.js"></script>
+
+  <script>
+    const viewer = new PhotoSphereViewer.Viewer({
+      container: document.querySelector('#viewer'),
+      panorama: 'panorama.jpg', // Replace with your image file
+      caption: 'My 360° Virtual Tour - Living Room',
+      loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
+      defaultYaw: '130deg',
+      touchmoveTwoFingers: true,
+      mousewheel: true,
+      navbar: [
+        'zoom',
+        'move',
+        'fullscreen'
+      ]
+    });
+  </script>
+</body>
+</html>
