@@ -29,15 +29,12 @@
   <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.0.5/dist/photo-sphere-viewer.min.js"></script>
 
   <script>
-    const viewer = new PhotoSphereViewer({
+    // ✅ Correct usage: use PhotoSphereViewer.Viewer
+    const viewer = new PhotoSphereViewer.Viewer({
       panorama: 'test1.jpg',
       container: document.getElementById('viewer'),
       caption: 'My 360° Virtual Tour',
-      navbar: [
-        'autorotate',
-        'zoom',
-        'fullscreen'
-      ],
+      navbar: ['autorotate', 'zoom', 'fullscreen'],
       defaultLong: 0,
     });
   </script>
