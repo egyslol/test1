@@ -11,48 +11,29 @@
     body {
       margin: 0;
       overflow: hidden;
-      font-family: sans-serif;
     }
-
     #viewer {
       width: 100vw;
       height: 100vh;
-      background-color: #000;
-    }
-
-    .caption {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-size: 16px;
+      background-color: black;
     }
   </style>
 </head>
 <body>
   <div id="viewer"></div>
 
-  <!-- Photo Sphere Viewer JS Dependencies -->
+  <!-- Viewer Dependencies -->
   <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
   <script src="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.min.js"></script>
 
   <script>
     const viewer = new PhotoSphereViewer.Viewer({
       container: document.querySelector('#viewer'),
-      panorama: 'test1.jpg', // Your 360° image
-      caption: 'My 360° Virtual Tour - Scene 1',
+      panorama: 'test1.jpg', // Image path
+      caption: 'My 360° Tour',
       loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
-      defaultYaw: '130deg',
-      touchmoveTwoFingers: true,
-      mousewheel: true,
-      navbar: [
-        'zoom',
-        'move',
-        'fullscreen'
-      ]
+      defaultYaw: '0deg',
+      navbar: ['zoom', 'move', 'fullscreen'],
     });
   </script>
 </body>
