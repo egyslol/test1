@@ -2,40 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>360 Virtual Tour</title>
-
-  <!-- Photo Sphere Viewer v4 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.0.5/dist/photo-sphere-viewer.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>360 Photo Viewer</title>
   <style>
     html, body {
       margin: 0;
-      padding: 0;
       height: 100%;
-      background: black;
+      overflow: hidden;
     }
-
     #viewer {
       width: 100%;
-      height: 100%;
+      height: 100vh;
     }
   </style>
+  <!-- Photo Sphere Viewer CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.css" />
 </head>
 <body>
   <div id="viewer"></div>
 
-  <!-- Dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.0.5/dist/photo-sphere-viewer.min.js"></script>
-
+  <!-- Photo Sphere Viewer JS -->
+  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
   <script>
-    // ✅ Correct usage: use PhotoSphereViewer.Viewer
     const viewer = new PhotoSphereViewer.Viewer({
-      panorama: 'test1.jpg',
       container: document.getElementById('viewer'),
-      caption: 'My 360° Virtual Tour',
-      navbar: ['autorotate', 'zoom', 'fullscreen'],
-      defaultLong: 0,
+      panorama: 'test1.jpg',
+      loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
+      defaultYaw: 0,
+      navbar: [
+        'zoom',
+        'move',
+        'download',
+        'fullscreen'
+      ]
     });
   </script>
 </body>
