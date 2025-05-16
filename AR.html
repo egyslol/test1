@@ -15,6 +15,16 @@
       width: 100%;
       height: 100vh;
     }
+    /* Custom hotspot style for big red circle */
+    .big-red-hotspot {
+      width: 64px;
+      height: 64px;
+      background-color: red;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 10px rgba(255,0,0,0.7);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -27,17 +37,15 @@
       autoLoad: true,
       showControls: true,
 
-      // Optional scene title
       title: "Main Room",
 
-      // Add one or more hotspots
       hotSpots: [
         {
-          pitch: 5,      // up/down angle in degrees
-          yaw: 120,      // left/right angle in degrees
+          pitch: 5,
+          yaw: 120,
           type: "info",
           text: "Go to Next Room",
-          URL: "next-room.html"   // Link to another page or you can change scene
+          URL: "next-room.html"
         },
         {
           pitch: -3,
@@ -48,11 +56,17 @@
             imageURL: "info-icon.png",
             label: "Look here!"
           }
+        },
+        {
+          pitch: 0,
+          yaw: 0,
+          type: "custom",
+          createTooltipFunc: bigRedHotspot,
+          createTooltipArgs: {}
         }
       ]
     });
 
-    // Optional: Create a custom hotspot (e.g., icon + label)
     function hotspotWithImage(hotSpotDiv, args) {
       hotSpotDiv.classList.add('custom-hotspot');
       let img = document.createElement('img');
@@ -66,6 +80,13 @@
         span.style.marginLeft = '8px';
         hotSpotDiv.appendChild(span);
       }
+    }
+
+    // New function to create big red hotspot
+    function bigRedHotspot(hotSpotDiv, args) {
+      hotSpotDiv.classList.add('big-red-hotspot');
+      // Optionally add a tooltip label on hover
+      hotSpotDiv.title = "Big Red Hotspot";
     }
   </script>
 </body>
